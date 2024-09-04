@@ -6,25 +6,43 @@ body {
   padding: 0;
 }
 
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1000px;
   text-align: center;
 }
 
 .title {
-  text-align: center;
   margin-bottom: 20px;
   color: #00ccff;
-  font-size: 2em;
+  font-size: 2.5em;
+}
+
+.filter-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Add space between filter and button */
+  margin-bottom: 20px;
 }
 
 .filter-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  color: #f0f0f0;
+  margin-bottom: 0; /* Remove the bottom margin */
 }
 
 label {
@@ -42,30 +60,113 @@ select {
   cursor: pointer;
 }
 
-.map-container {
-  padding: 20px;
-  background-color: #333;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.leaflet-container {
-  border-radius: 10px;
-}
-
-.action-button {
-  margin-top: 20px;
+button {
+  margin-top: 0; /* Remove the top margin */
   padding: 10px 20px;
-  font-size: 1.2em;
-  color: white;
+  font-size: 1.1em;
   background-color: #00ccff;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
+button:hover {
+  background-color: #0099cc;
+}
+
+.leaflet-container {
+  border-radius: 10px;
+  width: 100%;
+}
+
 .popup-content {
+  font-size: 1.1em;
+  line-height: 1.5;
+}
+
+/* Fireworks effect */
+.fireworks-container {
   margin-top: 20px;
-  font-size: 1.3em;
-  color: #ff6699;
+  position: relative;
+  height: 150px;
+  width: 150px;
+}
+
+.firework {
+  position: absolute;
+  width: 20px; /* Increase size */
+  height: 20px; /* Increase size */
+  background-color: #ff6666;
+  border-radius: 50%;
+  animation: explode 2s ease-out infinite; /* Slower and larger explosion */
+}
+
+.firework:nth-child(2) {
+  background-color: #66ff66;
+  animation-delay: 0.5s;
+}
+
+.firework:nth-child(3) {
+  background-color: #6666ff;
+  animation-delay: 1s;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(6); /* Larger explosion */
+    opacity: 0;
+  }
+}
+
+/* Fade-out effect */
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Popup styling */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+}
+
+.popup {
+  text-align: center;
+  background: #ff66a3;
+  padding: 3rem;
+  border-radius: 10px;
+  color: white;
+  animation: popup 0.6s ease-in-out;
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

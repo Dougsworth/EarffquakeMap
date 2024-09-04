@@ -3,6 +3,8 @@ import "leaflet/dist/leaflet.css";
 import { useState, useEffect } from "react";
 import L from "leaflet";
 
+import "./index.css"; // Ensure this is imported at the top of index.js
+
 // Use the path to your icon from the `public` folder
 const customIcon = new L.Icon({
   iconUrl: "/sumn.png", // Path to the image in the public folder
@@ -56,7 +58,11 @@ function App() {
   const handleClick = () => {
     setClickCount((prevCount) => prevCount + 1);
     if (clickCount + 1 === 3) {
-      setShowPopup(true);
+      document.body.classList.add("fade-out");
+      setTimeout(() => {
+        setShowPopup(true);
+        document.body.classList.remove("fade-out");
+      }, 1000);
     }
   };
 
@@ -64,20 +70,26 @@ function App() {
     <div className="container">
       <h1 className="title">Earthquake Map of Jamaica (1950-2010)</h1>
 
-      {/* Year filter dropdown */}
-      <div className="filter-container">
-        <label htmlFor="year-select">Filter by year:</label>
-        <select
-          id="year-select"
-          value={year}
-          onChange={(e) => setYear(e.target.value)}
-        >
-          {Array.from({ length: 61 }, (_, i) => (
-            <option key={1950 + i} value={1950 + i}>
-              {1950 + i}
-            </option>
-          ))}
-        </select>
+      {/* Year filter and button container */}
+      <div className="filter-button-container">
+        <div className="filter-container">
+          <label htmlFor="year-select">Filter by year:</label>
+          <select
+            id="year-select"
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+          >
+            {Array.from({ length: 61 }, (_, i) => (
+              <option key={1950 + i} value={1950 + i}>
+                {1950 + i}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <button onClick={handleClick} className="action-button">
+          Click me x 3
+        </button>
       </div>
 
       <MapContainer
@@ -86,7 +98,6 @@ function App() {
         style={{ height: "600px", width: "100%", borderRadius: "10px" }} // Styled map
         className="styled-map"
       >
-        {/* Use a more detailed map layer */}
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors & <a href="https://carto.com/">CARTO</a>'
@@ -112,14 +123,18 @@ function App() {
         ))}
       </MapContainer>
 
-      <button onClick={handleClick} className="action-button">
-        Click me x 3
-      </button>
-
-      {/* Conditional Popup */}
+      {/* Conditional Popup with fireworks */}
       {showPopup && (
-        <div className="popup-content">
-          Thank you for being here Arii, kisses!
+        <div className="popup-container">
+          <div className="popup">
+            <h2>Thank you for being here, Arii! 💖</h2>
+            <p>Kisses! 😘</p>
+            <div className="fireworks-container">
+              <div className="firework"></div>
+              <div className="firework"></div>
+              <div className="firework"></div>
+            </div>
+          </div>
         </div>
       )}
     </div>
