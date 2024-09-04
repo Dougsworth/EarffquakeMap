@@ -1,0 +1,71 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00ccff;
+  font-size: 2em;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #f0f0f0;
+}
+
+label {
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+select {
+  padding: 8px;
+  font-size: 1.1em;
+  border: none;
+  background-color: #00ccff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.map-container {
+  padding: 20px;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-container {
+  border-radius: 10px;
+}
+
+.action-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: white;
+  background-color: #00ccff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-content {
+  margin-top: 20px;
+  font-size: 1.3em;
+  color: #ff6699;
+}
